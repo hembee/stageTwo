@@ -10,7 +10,7 @@ dotenv.config();
 mongoose
   .connect(
     // process.env.MONGO_URI ||
-      "mongodb+srv://cash2go:cash2go@cluster0.pv5xecn.mongodb.net/stageTwo?retryWrites=true&w=majority"
+    "mongodb+srv://cash2go:cash2go@blax.sa6yubn.mongodb.net/stageTwo?retryWrites=true&w=majority"
   )
   .then(() => console.log("Database connection establised"))
   .catch((e) => console.log("Mongo connection error: ", e.message));
