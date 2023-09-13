@@ -78,7 +78,7 @@ const personController = {
   deleteUserController: (req, res) => {
     try {
       const { user_id } = req.params;
-      const deleted = Person.findByIdAndDelete(user_id);
+      const deleted = await Person.findByIdAndDelete(user_id);
       if (!deleted) {
         return res.status(404).json({ error: "Invalid User ID" });
       }
