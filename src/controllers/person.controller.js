@@ -5,9 +5,9 @@ const personController = {
   createPersonController: async (req, res) => {
     try {
       const { name } = req.body;
-      const { error } = personValidator.validateAsync({name});
+      const { error } = personValidator.validateAsync({ name });
       if (error) throw error;
-      const person = await Person.create({name});
+      const person = await Person.create({ name });
       if (!person) {
         return res
           .status(404)
@@ -48,15 +48,27 @@ const personController = {
     try {
       const { user_id } = req.params;
       const { name } = req.body;
-      const updated = Person.findByIdAndUpdate(user_id, {name}, { new: true });
+
+      const updated = await Person.findByIdAndUpdate(
+        user_id,
+        { name },
+        { new: true }
+      );
+
       if (!updated) {
         return res.status(404).json({ error: "Invalid User ID" });
       }
-      res.status(200).json({
+
+      const responseData = {
         status: "Success",
         message: "User updated successfully",
-        data: updated,
-      });
+        data: {
+          _id: updated._id,
+          name: updated.name,
+        },
+      };
+
+      res.status(200).json(responseData);
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Internal Server Error" });
