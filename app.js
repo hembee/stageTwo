@@ -2,6 +2,7 @@ const express = require("express");
 const joi = require("joi");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const morgan = require("morgan")
 const userRouter = require("./src/routes/person.route.js");
 dotenv.config();
 
