@@ -5,9 +5,9 @@ const personController = {
   createPersonController: async (req, res) => {
     try {
       const { name } = req.body;
-      const { error } = personValidator.validateAsync(name);
+      const { error } = personValidator.validateAsync({name});
       if (error) throw error;
-      const person = await Person.create(name);
+      const person = await Person.create({name});
       if (!person) {
         return res
           .status(404)
