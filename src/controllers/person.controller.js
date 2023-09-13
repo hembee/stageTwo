@@ -48,7 +48,7 @@ const personController = {
     try {
       const { user_id } = req.params;
       const { name } = req.body;
-      const updated = Person.findByIdAndUpdate(user_id, name, { new: true });
+      const updated = Person.findByIdAndUpdate(user_id, {name}, { new: true });
       if (!updated) {
         return res.status(404).json({ error: "Invalid User ID" });
       }
