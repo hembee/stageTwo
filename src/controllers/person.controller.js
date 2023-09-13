@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const Person = require("../models/person.model");
 const personValidator = require("../validators/person.validator");
 
@@ -22,12 +21,13 @@ const personController = {
       });
     } catch (error) {
       console.error(error);
+      res.status(500).json({ message: "Internal Server Error" });
     }
   },
 
   readUserController: async (req, res) => {
     try {
-      const { user_id } = req.query;
+      const { user_id } = req.params;
       const person = await Person.findById(user_id);
       if (!person) {
         return res.status(404).json({ error: "User not found!!!!" });
@@ -40,12 +40,13 @@ const personController = {
       });
     } catch (error) {
       console.error(error);
+      res.status(500).json({ message: "Internal Server Error" });
     }
   },
 
   updateUserController: async (req, res) => {
     try {
-      const { user_id } = req.query;
+      const { user_id } = req.params;
       const { name } = req.body;
       const updated = Person.findByIdAndUpdate(user_id, name, { new: true });
       if (!updated) {
@@ -58,12 +59,13 @@ const personController = {
       });
     } catch (error) {
       console.error(error);
+      res.status(500).json({ message: "Internal Server Error" });
     }
   },
 
   deleteUserController: (req, res) => {
     try {
-      const { user_id } = req.query;
+      const { user_id } = req.params;
       const deleted = Person.findByIdAndDelete(user_id);
       if (!deleted) {
         return res.status(404).json({ error: "Invalid User ID" });
@@ -74,6 +76,7 @@ const personController = {
       });
     } catch (error) {
       console.error(error);
+      res.status(500).json({ message: "Internal Server Error" });
     }
   },
 };

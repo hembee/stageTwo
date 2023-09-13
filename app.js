@@ -2,7 +2,7 @@ const express = require("express");
 const joi = require("joi");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const UserRouter = require("./src/routes/person.route.js");
+const userRouter = require("./src/routes/person.route.js");
 dotenv.config();
 
 const PORT = process.env.PORT;
@@ -18,7 +18,7 @@ const app = express();
 app.use(express.json());
 
 // ROUTE
-app.use("/api", UserRouter);
+app.use("/api", userRouter);
 
 app.listen(PORT, () => {
   console.log("App is listening on port " + PORT);

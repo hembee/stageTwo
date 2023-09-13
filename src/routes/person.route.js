@@ -7,8 +7,8 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", personController.createPersonController);
-router.get("/user_id", personController.readUserController);
-router.put("/user_id", personController.updateUserController);
-router.delete("/user_id", personController.deleteUserController);
+router.get("/:user_id", personController.readUserController);
+router.put("/:user_id", personController.updateUserController);
+router.delete("/:user_id", personController.deleteUserController);
 
 module.exports = router;
