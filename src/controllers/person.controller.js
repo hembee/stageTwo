@@ -75,7 +75,7 @@ const personController = {
     }
   },
 
-  deleteUserController: (req, res) => {
+  deleteUserController: async (req, res) => {
     try {
       const { user_id } = req.params;
       const deleted = await Person.findByIdAndDelete(user_id);
